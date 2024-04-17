@@ -1,8 +1,8 @@
 #EC2
 resource "aws_instance" "wordpress" {
   ami                         = "ami-053b0d53c279acc90"
-  instance_type               = "t3.micro"
-  key_name                    = "wiz-key"
+  instance_type               = "t2.micro"
+  key_name                    = "pem"
   subnet_id                   = aws_subnet.public1.id
   security_groups             = [aws_security_group.allow_ssh.id]
   associate_public_ip_address = true
@@ -20,12 +20,12 @@ resource "aws_db_instance" "rds_instance" {
   engine_version            = "5.7"
   skip_final_snapshot       = true
   final_snapshot_identifier = "my-final-snapshot"
-  instance_class            = "db.t3.micro"
+  instance_class            = "db.t2.micro"
   allocated_storage         = 20
   identifier                = "my-rds-instance"
   db_name                   = "wordpress_db"
-  username                  = "cobra"
-  password                  = "ranger123$"
+  username                  = "mani"
+  password                  = "mani123$"
   db_subnet_group_name      = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids    = [aws_security_group.rds_security_group.id]
 
